@@ -9,19 +9,15 @@
 */
 
 void setup() {
+  //Shows the application is running shows blue light
+  Bean.setLed(0, 0, 255);
 }
 
 void loop() {
-  // Turn the Bean's LED red
-  Bean.setLed(255, 0, 0);
-  Bean.sleep(1000);      
-  // Turn the Bean's LED green  
-  Bean.setLed(0, 255, 0);
-  Bean.sleep(1000);
-  // Turn the Bean's LED blue
-  Bean.setLed(0, 0, 255);
-  Bean.sleep(1000);
-  // Turn off the Bean's LED
-  Bean.setLed(0, 0, 0);
-  Bean.sleep(1000);
+  int temperature = Bean.getTemperature();
+  
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
+  Bean.sleep(3000);
 }
