@@ -9,19 +9,42 @@
 */
 
 void setup() {
+  //set data rate for computer communication
+  Serial.begin(57600);
+  
+  //Shows the application is running shows blue light
+  Bean.setLed(0, 0, 255);
+  
+  // initialize light and water sensor
+  pinMode(0, OUTPUT);     // set D0 as output
+  digitalWrite(0, LOW);   // turn it off initially
+  
 }
 
 void loop() {
-  // Turn the Bean's LED red
-  Bean.setLed(255, 0, 0);
-  Bean.sleep(1000);      
-  // Turn the Bean's LED green  
-  Bean.setLed(0, 255, 0);
-  Bean.sleep(1000);
-  // Turn the Bean's LED blue
-  Bean.setLed(0, 0, 255);
-  Bean.sleep(1000);
-  // Turn off the Bean's LED
-  Bean.setLed(0, 0, 0);
-  Bean.sleep(1000);
+  int temperature = Bean.getTemperature();
+  
+  digitalWrite(0, HIGH);
+  digitalWrite(1, HIGH);
+  
+  Bean.sleep(10);
+  
+  int lightValue;
+  int waterValue;
+  lightValue = analogRead(A1);
+  waterValue = analogRead(A0);
+  
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
+  
+  Serial.print("Light: ");
+  Serial.print(lightValue);
+  Serial.println("");
+  
+  Serial.print("Water: ");
+  Serial.print(waterValue);
+  Serial.println("");
+  
+  Bean.sleep(3000);
 }
