@@ -5,6 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.punchthrough.bean.sdk.Bean;
+import com.punchthrough.bean.sdk.BeanDiscoveryListener;
+import com.punchthrough.bean.sdk.BeanManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -12,6 +19,28 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        final List<Bean> beans = new ArrayList<>();
+
+        BeanDiscoveryListener listener = new BeanDiscoveryListener() {
+            @Override
+            public void onBeanDiscovered(Bean bean, int rssi) {
+                beans.add(bean);
+            }
+
+            @Override
+            public void onDiscoveryComplete() {
+                for (Bean bean : beans) {
+                    System.out.println(bean.getDevice().getName());   // "Bean"              (example)
+                    System.out.println(bean.getDevice().getAddress());    // "B4:99:4C:1E:BC:75" (example)
+                }
+
+            }
+        };
+
+        BeanManager.getInstance().startDiscovery(listener);
     }
 
 
