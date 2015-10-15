@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="E:\Personal\Documents\study\4Softeng702\smartplants\lightbluebean\src\main\res"/><source path="E:\Personal\Documents\study\4Softeng702\smartplants\lightbluebean\build\generated\res\rs\release"/><source path="E:\Personal\Documents\study\4Softeng702\smartplants\lightbluebean\build\generated\res\generated\release"/></dataSet><dataSet config="release"><source path="E:\Personal\Documents\study\4Softeng702\smartplants\lightbluebean\src\release\res"/></dataSet><mergedItems/></merger>
