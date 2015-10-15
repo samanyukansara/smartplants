@@ -1,17 +1,12 @@
-package nz.ac.aucklanduni.smartplants;
+package nz.ac.aucklanduni.smartplants.Activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.punchthrough.bean.sdk.Bean;
-import com.punchthrough.bean.sdk.BeanDiscoveryListener;
-import com.punchthrough.bean.sdk.BeanManager;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import nz.ac.aucklanduni.smartplants.BeanServices.BeanConnector;
+import nz.ac.aucklanduni.smartplants.R;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -20,29 +15,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        final List<Bean> beans = new ArrayList<>();
-
-        BeanDiscoveryListener listener = new BeanDiscoveryListener() {
-            @Override
-            public void onBeanDiscovered(Bean bean, int rssi) {
-                beans.add(bean);
-            }
-
-            @Override
-            public void onDiscoveryComplete() {
-                for (Bean bean : beans) {
-                    System.out.println(bean.getDevice().getName());   // "Bean"              (example)
-                    System.out.println(bean.getDevice().getAddress());    // "B4:99:4C:1E:BC:75" (example)
-                }
-
-            }
-        };
-
-        BeanManager.getInstance().startDiscovery(listener);
+        new BeanConnector(this);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
