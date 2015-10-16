@@ -33,12 +33,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private static final String TABLE_MOISTURE = "moisture";
     private static final String MOISTURE_COLUMNS[] = {KEY_ID_MOISTURE, KEY_DATE_MOISTURE, KEY_MOISTURE};
 
-//    private static final String KEY_ID = "id";
-//    private static final String KEY_TEMP = "temp";
-//    private static final String KEY_DATE = "date";
-//    private static final String TABLE_TEMP = "temperature";
-//    private static final String TEMP_COLUMNS[] = {KEY_ID, KEY_DATE, KEY_TEMP};
-
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -46,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sdb) {
-        // SQL statement to create book table
+
         String CREATE_TEMP_TABLE = "CREATE TABLE temperature ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "date TEXT, "+
@@ -62,7 +56,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 "date TEXT, "+
                 "moistureV INTEGER )";
 
-        // create books table
         sdb.execSQL(CREATE_TEMP_TABLE);
         sdb.execSQL(CREATE_LIGHT_TABLE);
         sdb.execSQL(CREATE_MOISTURE_TABLE);
@@ -79,62 +72,51 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         System.out.println("success");
 
 
-        // create fresh books table
         this.onCreate(sdb);
     }
-    // Crud  operations
     public void addTemp(Temperature temp)
     {
         Log.d("addTemp", temp.toString());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_TEMP, temp.getTemp()); // get temp
-        values.put(KEY_DATE_TEMP, temp.getDate()); // get date
+        values.put(KEY_TEMP, temp.getTemp());
+        values.put(KEY_DATE_TEMP, temp.getDate());
 
-        // 3. insert
-        db.insert(TABLE_TEMP, // table
-                null, //nullColumnHack
-                values); // key/value -> keys = column names/ values = column values
+        db.insert(TABLE_TEMP,
+                null,
+                values);
 
-        // 4. close
         db.close();
 
     }
 
     public Temperature getTemp(int id){
 
-        // 1. get reference to readable DB
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // 2. build query
         Cursor cursor =
-                db.query(TABLE_TEMP, // a. table
-                        TEMP_COLUMNS, // b. column names
-                        "id = ? ", // c. selections
-//                        null, // c. selections
-                        new String[] { String.valueOf(id) }, // d. selections args
-                        null, // e. group by
-                        null, // f. having
-                        null, // g. order by
-                        null); // h. limit
+                db.query(TABLE_TEMP,
+                        TEMP_COLUMNS,
+                        "id = ? ",
+                        new String[] { String.valueOf(id) },
+                        null,
+                        null,
+                        null,
+                        null);
         db.rawQuery("select * from temperature", null);
 
-        // 3. if we got results get the first one
         if (cursor != null) {
             cursor.moveToFirst();
             Log.d("how many ", " " + cursor.getCount());
         }
 
-        // 4. build book object
         Temperature temp = new Temperature();
         temp.setID(Integer.parseInt(cursor.getString(0)));
         temp.setDate(cursor.getString(1));
         temp.setTemp(Integer.parseInt(cursor.getString(2)));
-////
-////        //log
+
         Log.d("getTemp(" + id + ")", temp.toString());
-//
-//        // 5. return book
+
         return null;
     }
 
@@ -143,50 +125,42 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         Log.d("addLightValue", lightV.toString());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_LIGHT, lightV.getLight()); // get temp
-        values.put(KEY_DATE_LIGHT, lightV.getDate()); // get date
+        values.put(KEY_LIGHT, lightV.getLight());
+        values.put(KEY_DATE_LIGHT, lightV.getDate());
 
-        // 3. insert
-        db.insert(TABLE_LIGHT, // table
-                null, //nullColumnHack
-                values); // key/value -> keys = column names/ values = column values
+        db.insert(TABLE_LIGHT,
+                null,
+                values);
 
-        // 4. close
         db.close();
 
     }
 
     public Light getLight(int id){
 
-        // 1. get reference to readable DB
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // 2. build query
         Cursor cursor =
-                db.query(TABLE_LIGHT, // a. table
-                        LIGHT_COLUMNS, // b. column names
-                        "id = ? ", // c. selections
-                        new String[] { String.valueOf(id) }, // d. selections args
-                        null, // e. group by
-                        null, // f. having
-                        null, // g. order by
-                        null); // h. limit
+                db.query(TABLE_LIGHT,
+                        LIGHT_COLUMNS,
+                        "id = ? ",
+                        new String[] { String.valueOf(id) },
+                        null,
+                        null,
+                        null,
+                        null);
 
-        // 3. if we got results get the first one
         if (cursor != null) {
             cursor.moveToFirst();
         }
 
-        // 4. build book object
         Light lightV = new Light();
         lightV.setID(Integer.parseInt(cursor.getString(0)));
         lightV.setDate(cursor.getString(1));
         lightV.setLight(Integer.parseInt(cursor.getString(2)));
-//
-//        //log
+
         Log.d("getLight(" + id + ")", lightV.toString());
 
-        // 5. return book
         return lightV;
     }
 
@@ -195,49 +169,41 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         Log.d("addMoistureValue", moistureV.toString());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_MOISTURE, moistureV.getMoisture()); // get temp
-        values.put(KEY_DATE_MOISTURE, moistureV.getDate()); // get date
+        values.put(KEY_MOISTURE, moistureV.getMoisture());
+        values.put(KEY_DATE_MOISTURE, moistureV.getDate());
 
-        // 3. insert
-        db.insert(TABLE_MOISTURE, // table
-                null, //nullColumnHack
-                values); // key/value -> keys = column names/ values = column values
+        db.insert(TABLE_MOISTURE,
+                null,
+                values);
 
-        // 4. close
         db.close();
     }
 
     public Moisture getMoisture(int id){
 
-        // 1. get reference to readable DB
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // 2. build query
         Cursor cursor =
-                db.query(TABLE_MOISTURE, // a. table
-                        MOISTURE_COLUMNS, // b. column names
-                        "id = ? ", // c. selections
-                        new String[] { String.valueOf(id) }, // d. selections args
-                        null, // e. group by
-                        null, // f. having
-                        null, // g. order by
-                        null); // h. limit
+                db.query(TABLE_MOISTURE,
+                        MOISTURE_COLUMNS,
+                        "id = ? ",
+                        new String[] { String.valueOf(id) },
+                        null,
+                        null,
+                        null,
+                        null);
 
-        // 3. if we got results get the first one
         if (cursor != null) {
             cursor.moveToFirst();
         }
 
-        // 4. build book object
         Moisture moistureV = new Moisture();
         moistureV.setID(Integer.parseInt(cursor.getString(0)));
         moistureV.setDate(cursor.getString(1));
         moistureV.setMoisture(Integer.parseInt(cursor.getString(2)));
-//
-//        //log
+
         Log.d("getMoisture(" + id + ")", moistureV.toString());
 
-        // 5. return book
         return moistureV;
     }
 }
