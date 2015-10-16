@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Rodel on 10/16/2015.
  */
@@ -205,5 +208,24 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         Log.d("getMoisture(" + id + ")", moistureV.toString());
 
         return moistureV;
+    }
+
+    public Temperature retrieve(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryS = "SELECT * FROM temperature ORDER BY id DESC LIMIT 24";
+
+        List<Integer> lastRecords = new ArrayList<Integer>();
+        Cursor cursor =
+                db.rawQuery(queryS, null);
+        if (cursor != null) {
+            Log.d("inputs in database", ": "+ cursor.getCount());
+            int i = 0;
+            while(cursor.moveToNext()) {
+                lastRecords.add(Integer.valueOf(cursor.getString(2)));
+                Log.d("inputs in database", ": " + cursor.getString(2));
+                i++;
+            }
+        }
+        return null;
     }
 }

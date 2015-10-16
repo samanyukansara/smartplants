@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import nz.ac.aucklanduni.smartplants.BeanServices.BeanConnector;
 import nz.ac.aucklanduni.smartplants.MySQLiteHelper;
 import nz.ac.aucklanduni.smartplants.R;
+import nz.ac.aucklanduni.smartplants.Temperature;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -19,6 +20,12 @@ public class MainActivity extends ActionBarActivity {
 
         new BeanConnector(this);
         MySQLiteHelper myHelper = new MySQLiteHelper(this);
+        myHelper.addTemp(new Temperature("16/10/2015", 34));
+        myHelper.addTemp(new Temperature("17/10/2015", 33));
+        myHelper.addTemp(new Temperature("18/10/2015", 32));
+
+        myHelper.retrieve();
+
     }
 
     @Override
