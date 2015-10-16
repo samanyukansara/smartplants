@@ -55,12 +55,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         String CREATE_LIGHT_TABLE = "CREATE TABLE light ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "date TEXT, "+
-                "lightV TEXT )";
+                "lightV INTEGER )";
 
         String CREATE_MOISTURE_TABLE = "CREATE TABLE moisture ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "date TEXT, "+
-                "moistureV TEXT )";
+                "moistureV INTEGER )";
 
         // create books table
         sdb.execSQL(CREATE_TEMP_TABLE);
@@ -111,16 +111,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 db.query(TABLE_TEMP, // a. table
                         TEMP_COLUMNS, // b. column names
                         "id = ? ", // c. selections
+//                        null, // c. selections
                         new String[] { String.valueOf(id) }, // d. selections args
                         null, // e. group by
                         null, // f. having
                         null, // g. order by
                         null); // h. limit
+        db.rawQuery("select * from temperature", null);
 
         // 3. if we got results get the first one
         if (cursor != null) {
             cursor.moveToFirst();
-//            Log.d("how many ", " " + cursor.getCount());
+            Log.d("how many ", " " + cursor.getCount());
         }
 
         // 4. build book object
@@ -128,12 +130,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         temp.setID(Integer.parseInt(cursor.getString(0)));
         temp.setDate(cursor.getString(1));
         temp.setTemp(Integer.parseInt(cursor.getString(2)));
-//
-//        //log
+////
+////        //log
         Log.d("getTemp(" + id + ")", temp.toString());
-
-        // 5. return book
-        return temp;
+//
+//        // 5. return book
+        return null;
     }
 
     public void addLight(Light lightV)

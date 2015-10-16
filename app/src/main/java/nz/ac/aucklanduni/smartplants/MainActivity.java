@@ -43,13 +43,15 @@ public class MainActivity extends ActionBarActivity {
 
         // Test data
         Temperature temp = new Temperature("16/10/2015", 24);
-
         Temperature atemp = new Temperature("17/10/2015", 24);
-//        myHelper.addTemp(temp);
-//        myHelper.addTemp(atemp);
+
+        Light lightV = new Light("16/10/2015", 24);
+        Light lightV2 = new Light("20/10/2015", 24);
+        myHelper.addLight(lightV);
+        myHelper.addLight(lightV2);
 //        myHelper.getTemp(5);
-        myHelper.getTemp(6);
-        myHelper.getTemp(7);
+//        myHelper.getLight(1);
+//        myHelper.getLight(2);
     }
 
 
