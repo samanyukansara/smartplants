@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by mark on 10/16/2015.
  */
-public class BeanDiscoveryListenerImplemtation implements BeanDiscoveryListener {
+public class BeanDiscoveryListenerImplementation implements BeanDiscoveryListener {
 
     final List<Bean> beans = new ArrayList<>();
     List<BeanObservers> observers = new ArrayList<>();
