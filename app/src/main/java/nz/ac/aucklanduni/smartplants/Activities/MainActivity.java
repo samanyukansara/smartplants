@@ -31,16 +31,16 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         final Button button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener(new HelpFunction(this));
+        button1.setOnClickListener(new WaterFunction(this));
 
         final Button button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new WaterFunction(this));
+        button2.setOnClickListener(new LightFunction(this));
 
         final Button button3 = (Button) findViewById(R.id.button3);
         button3.setOnClickListener(new TemperatureFunction(this));
 
         final Button button4 = (Button) findViewById(R.id.button4);
-        button4.setOnClickListener(new LightFunction(this));
+        button4.setOnClickListener(new HelpFunction(this));
 
         return true;
     }
