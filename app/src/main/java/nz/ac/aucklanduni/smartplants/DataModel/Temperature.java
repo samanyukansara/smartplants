@@ -1,4 +1,4 @@
-package nz.ac.aucklanduni.smartplants;
+package nz.ac.aucklanduni.smartplants.DataModel;
 
 /**
  * Created by Rodel on 10/16/2015.

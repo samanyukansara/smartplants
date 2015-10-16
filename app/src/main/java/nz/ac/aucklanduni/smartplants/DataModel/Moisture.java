@@ -1,25 +1,25 @@
-package nz.ac.aucklanduni.smartplants;
+package nz.ac.aucklanduni.smartplants.DataModel;
 
 /**
  * Created by Rodel on 10/16/2015.
  */
-public class Light {
+public class Moisture {
 
     private int id;
     private String date;
-    private int lightV;
+    private int moistureV;
 
-    public Light(){}
+    public Moisture(){}
 
-    public Light(String date, int lightV) {
+    public Moisture(String date, int moistureV) {
         super();
         this.date = date;
-        this.lightV = lightV;
+        this.moistureV = moistureV;
     }
 
     //getters & setters
-    public int getLight(){
-        return lightV;
+    public int getMoisture(){
+        return moistureV;
     }
 
     public String getDate(){
@@ -34,8 +34,8 @@ public class Light {
         this.id = id;
     }
 
-    public void setLight(int lightV){
-        this.lightV = lightV;
+    public void setMoisture(int moistureV){
+        this.moistureV = moistureV;
     }
 
     public void setDate(String date){
@@ -44,7 +44,7 @@ public class Light {
 
     @Override
     public String toString() {
-        return "Light Value [id=" + id + ", date=" + date + ", light =" + lightV
+        return "Moisture Value [id=" + id + ", date=" + date + ", moisture =" + moistureV
                 + "]";
     }
 }

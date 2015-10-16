@@ -1,4 +1,4 @@
-package nz.ac.aucklanduni.smartplants;
+package nz.ac.aucklanduni.smartplants.DataModel;
 
 import android.content.ContentValues;
 import android.content.Context;
