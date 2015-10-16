@@ -2,10 +2,12 @@ package nz.ac.aucklanduni.smartplants.Activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import nz.ac.aucklanduni.smartplants.BeanServices.BeanConnector;
+import nz.ac.aucklanduni.smartplants.MySQLiteHelper;
 import nz.ac.aucklanduni.smartplants.R;
 
 public class MainActivity extends ActionBarActivity {
@@ -16,6 +18,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         new BeanConnector(this);
+        MySQLiteHelper myHelper = new MySQLiteHelper(this);
     }
 
     @Override
