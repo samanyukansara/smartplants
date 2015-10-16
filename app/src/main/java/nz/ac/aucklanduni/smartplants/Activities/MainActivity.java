@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import nz.ac.aucklanduni.smartplants.BeanServices.BeanConnector;
 import nz.ac.aucklanduni.smartplants.MySQLiteHelper;
 import nz.ac.aucklanduni.smartplants.R;
+import nz.ac.aucklanduni.smartplants.Temperature;
 
 public class MainActivity extends ActionBarActivity {
 

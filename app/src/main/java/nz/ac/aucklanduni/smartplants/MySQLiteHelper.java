@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Rodel on 10/16/2015.
  */
@@ -144,7 +147,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 db.query(TABLE_LIGHT,
                         LIGHT_COLUMNS,
                         "id = ? ",
-                        new String[] { String.valueOf(id) },
+                        new String[]{String.valueOf(id)},
                         null,
                         null,
                         null,
@@ -187,7 +190,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 db.query(TABLE_MOISTURE,
                         MOISTURE_COLUMNS,
                         "id = ? ",
-                        new String[] { String.valueOf(id) },
+                        new String[]{String.valueOf(id)},
                         null,
                         null,
                         null,
@@ -205,5 +208,50 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         Log.d("getMoisture(" + id + ")", moistureV.toString());
 
         return moistureV;
+    }
+
+    public Temperature retrieveTemp(){
+        final SQLiteDatabase db = this.getReadableDatabase();
+        final String queryS = "SELECT * FROM temperature ORDER BY id DESC LIMIT 24";
+
+        final List<Integer> lastRecords = new ArrayList<Integer>();
+        final Cursor cursor =
+                db.rawQuery(queryS, null);
+        if (cursor != null) {
+            while(cursor.moveToNext()) {
+                lastRecords.add(Integer.valueOf(cursor.getString(2)));
+            }
+        }
+        return null;
+    }
+
+    public Light retrieveLight(){
+        final SQLiteDatabase db = this.getReadableDatabase();
+        final String queryS = "SELECT * FROM light ORDER BY id DESC LIMIT 24";
+
+        final List<Integer> lastLightRecords = new ArrayList<Integer>();
+        final Cursor cursor =
+                db.rawQuery(queryS, null);
+        if (cursor != null) {
+            while(cursor.moveToNext()) {
+                lastLightRecords.add(Integer.valueOf(cursor.getString(2)));
+            }
+        }
+        return null;
+    }
+
+    public Moisture retrieveMoist(){
+        final SQLiteDatabase db = this.getReadableDatabase();
+        final String queryS = "SELECT * FROM moisture ORDER BY id DESC LIMIT 24";
+
+        final List<Integer> lastRecords = new ArrayList<Integer>();
+        final Cursor cursor =
+                db.rawQuery(queryS, null);
+        if (cursor != null) {
+            while(cursor.moveToNext()) {
+                lastRecords.add(Integer.valueOf(cursor.getString(2)));
+            }
+        }
+        return null;
     }
 }
