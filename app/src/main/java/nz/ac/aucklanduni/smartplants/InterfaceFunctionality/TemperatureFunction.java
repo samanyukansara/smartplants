@@ -2,7 +2,6 @@ package nz.ac.aucklanduni.smartplants.InterfaceFunctionality;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
-import android.widget.Toast;
 
 import nz.ac.aucklanduni.smartplants.AiServices.TemperatureAi;
 import nz.ac.aucklanduni.smartplants.R;
@@ -21,12 +20,12 @@ public class TemperatureFunction extends ButtonFunction {
 
     @Override
     public void execute() {
-        final int value = this.temperatureAi.getValue();
+        final int value = this.temperatureAi.getValue(this.context);
 
-        if (value > 28) {
+        if (value > 37) {
             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.temphigh);
             mediaPlayer.start();
-        } else if (value < 20){
+        } else if (value < 10){
             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.templow);
             mediaPlayer.start();
         } else {

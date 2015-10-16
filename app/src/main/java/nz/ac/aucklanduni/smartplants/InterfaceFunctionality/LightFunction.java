@@ -21,7 +21,7 @@ public class LightFunction extends ButtonFunction {
 
     @Override
     public void execute() {
-        final int value = this.lightAi.getValue();
+        final int value = this.lightAi.getValue(this.context);
 
         if (value <= 10) {
             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.lightnotenough);

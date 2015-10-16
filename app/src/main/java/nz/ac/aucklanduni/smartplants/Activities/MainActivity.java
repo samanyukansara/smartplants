@@ -4,15 +4,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import nz.ac.aucklanduni.smartplants.BeanServices.BeanConnector;
 import nz.ac.aucklanduni.smartplants.InterfaceFunctionality.HelpFunction;
 import nz.ac.aucklanduni.smartplants.InterfaceFunctionality.LightFunction;
 import nz.ac.aucklanduni.smartplants.InterfaceFunctionality.TemperatureFunction;
 import nz.ac.aucklanduni.smartplants.InterfaceFunctionality.WaterFunction;
+import nz.ac.aucklanduni.smartplants.DataModel.MySQLiteHelper;
 import nz.ac.aucklanduni.smartplants.R;
 
 public class MainActivity extends ActionBarActivity {
@@ -23,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         new BeanConnector(this);
+        MySQLiteHelper myHelper = new MySQLiteHelper(this);
     }
 
     @Override
