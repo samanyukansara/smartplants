@@ -2,6 +2,7 @@ package nz.ac.aucklanduni.smartplants;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,9 +20,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
+        MySQLiteHelper myHelper = new MySQLiteHelper(this);
         final List<Bean> beans = new ArrayList<>();
 
         BeanDiscoveryListener listener = new BeanDiscoveryListener() {
@@ -41,6 +40,16 @@ public class MainActivity extends ActionBarActivity {
         };
 
         BeanManager.getInstance().startDiscovery(listener);
+
+        // Test data
+        Temperature temp = new Temperature("16/10/2015", 24);
+
+        Temperature atemp = new Temperature("17/10/2015", 24);
+//        myHelper.addTemp(temp);
+//        myHelper.addTemp(atemp);
+//        myHelper.getTemp(5);
+        myHelper.getTemp(6);
+        myHelper.getTemp(7);
     }
 
 
