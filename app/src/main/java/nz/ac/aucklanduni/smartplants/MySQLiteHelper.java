@@ -210,7 +210,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         return moistureV;
     }
 
-    public Temperature retrieveTemp(){
+    public List<Integer> retrieveTemp(){
         final SQLiteDatabase db = this.getReadableDatabase();
         final String queryS = "SELECT * FROM temperature ORDER BY id DESC LIMIT 24";
 
@@ -222,25 +222,25 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 lastRecords.add(Integer.valueOf(cursor.getString(2)));
             }
         }
-        return null;
+        return lastRecords;
     }
 
-    public Light retrieveLight(){
+    public List<Integer> retrieveLight(){
         final SQLiteDatabase db = this.getReadableDatabase();
         final String queryS = "SELECT * FROM light ORDER BY id DESC LIMIT 24";
 
-        final List<Integer> lastLightRecords = new ArrayList<Integer>();
+        final List<Integer> lastRecords = new ArrayList<Integer>();
         final Cursor cursor =
                 db.rawQuery(queryS, null);
         if (cursor != null) {
             while(cursor.moveToNext()) {
-                lastLightRecords.add(Integer.valueOf(cursor.getString(2)));
+                lastRecords.add(Integer.valueOf(cursor.getString(2)));
             }
         }
-        return null;
+        return lastRecords;
     }
 
-    public Moisture retrieveMoist(){
+    public List<Integer> retrieveMoist(){
         final SQLiteDatabase db = this.getReadableDatabase();
         final String queryS = "SELECT * FROM moisture ORDER BY id DESC LIMIT 24";
 
@@ -252,6 +252,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 lastRecords.add(Integer.valueOf(cursor.getString(2)));
             }
         }
-        return null;
+        return lastRecords;
     }
 }
