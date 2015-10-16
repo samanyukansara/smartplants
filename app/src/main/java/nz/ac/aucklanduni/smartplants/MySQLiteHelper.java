@@ -77,6 +77,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         this.onCreate(sdb);
     }
+
     public void addTemp(Temperature temp)
     {
         Log.d("addTemp", temp.toString());

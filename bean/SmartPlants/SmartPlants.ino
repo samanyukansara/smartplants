@@ -22,7 +22,7 @@ void setup() {
 }
 
 void loop() {
-  int temperature = Bean.getTemperature();
+  int temperatureValue = Bean.getTemperature();
   
   digitalWrite(0, HIGH);
   digitalWrite(1, HIGH);
@@ -34,17 +34,9 @@ void loop() {
   lightValue = analogRead(A1);
   waterValue = analogRead(A0);
   
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.println(" C");
-  
-  Serial.print("Light: ");
-  Serial.print(lightValue);
-  Serial.println("");
-  
-  Serial.print("Water: ");
-  Serial.print(waterValue);
-  Serial.println("");
+  Serial.println(temperatureValue);
+  Serial.println(lightValue);
+  Serial.println(waterValue);
   
   Bean.sleep(3000);
 }

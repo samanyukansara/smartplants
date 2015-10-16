@@ -24,7 +24,7 @@ public final class BeanConnector implements BeanObservers {
     }
 
     private void discoverBeans() {
-        BeanDiscoveryListenerImplemtation listener = new BeanDiscoveryListenerImplemtation();
+        BeanDiscoveryListenerImplementation listener = new BeanDiscoveryListenerImplementation();
         listener.registerBeanObserver(this);
         BeanManager.getInstance().startDiscovery(listener);
     }
@@ -42,7 +42,7 @@ public final class BeanConnector implements BeanObservers {
     @Override
     public void onBeanDiscovered(Bean bean) {
         if (!this.isConnected) {
-            BeanListenerImplementation listener = new BeanListenerImplementation();
+            BeanListenerImplementation listener = new BeanListenerImplementation(context);
             bean.connect(context, listener);
             this.isConnected = true;
         }
