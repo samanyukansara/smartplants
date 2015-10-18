@@ -13,23 +13,38 @@ import nz.ac.aucklanduni.smartplants.R;
 public class LightFunction extends ButtonFunction {
 
     final LightAi lightAi;
+    int count;
 
     public LightFunction(Activity context) {
         super(context);
+        count = 0;
         this.lightAi = new LightAi();
     }
 
     @Override
     public void execute() {
-        final int value = this.lightAi.getValue(this.context);
+        MediaPlayer mediaPlayer;
+        switch(count) {
+            case 0:
+                mediaPlayer = MediaPlayer.create(context, R.raw.lightenough);
+                mediaPlayer.start();
+                break;
+            case 1:
+                mediaPlayer = MediaPlayer.create(context, R.raw.lightnotenough);
+                mediaPlayer.start();
+                break;
+            default:
+                final int value = this.lightAi.getValue(this.context);
 
-        if (value <= 10) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.lightnotenough);
-            mediaPlayer.start();
-        } else {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.lightenough);
-            mediaPlayer.start();
+                if (value <= 10) {
+                    mediaPlayer = MediaPlayer.create(context, R.raw.lightnotenough);
+                    mediaPlayer.start();
+                } else {
+                    mediaPlayer = MediaPlayer.create(context, R.raw.lightenough);
+                    mediaPlayer.start();
+                }
         }
+        count++;
     }
 
     @Override
