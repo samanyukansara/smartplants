@@ -33,6 +33,10 @@ public class TemperatureFunction extends ButtonFunction {
                 mediaPlayer.start();
                 break;
             case 2:
+                mediaPlayer = MediaPlayer.create(context, R.raw.tempright);
+                mediaPlayer.start();
+                break;
+            case 3:
                 mediaPlayer = MediaPlayer.create(context, R.raw.templow);
                 mediaPlayer.start();
                 break;

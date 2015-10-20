@@ -29,11 +29,11 @@ public class WaterFunction extends ButtonFunction {
                 mediaPlayer.start();
                 break;
             case 1:
-                mediaPlayer = MediaPlayer.create(context, R.raw.watertoomuch);
+                mediaPlayer = MediaPlayer.create(context, R.raw.waterright);
                 mediaPlayer.start();
                 break;
             case 2:
-                mediaPlayer = MediaPlayer.create(context, R.raw.waterright);
+                mediaPlayer = MediaPlayer.create(context, R.raw.watertoomuch);
                 mediaPlayer.start();
                 break;
             default:
